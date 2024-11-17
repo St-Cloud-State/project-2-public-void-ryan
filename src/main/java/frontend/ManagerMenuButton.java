@@ -21,28 +21,41 @@ public class ManagerMenuButton extends JButton implements ActionListener {
             return;
         }
         if (managerID.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Manager Username cannot be empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Manager Username cannot be empty.",
+                    "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        JPasswordField passwordField = new JPasswordField();
-        int option = JOptionPane.showConfirmDialog(warehouseContext.getMainFrame(), passwordField, "Enter Manager Password:", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Enter Manager Password:");
+        JPasswordField passwordField = new JPasswordField(10);
+        panel.add(label);
+        panel.add(passwordField);
+        int option = JOptionPane.showConfirmDialog(
+                warehouseContext.getMainFrame(),
+                panel,
+                "Manager Password Prompt",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
         if (option != JOptionPane.OK_OPTION) {
             return;
         }
         String managerPassword = new String(passwordField.getPassword());
         if (managerPassword.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Manager Password cannot be empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Manager Password cannot be empty.",
+                    "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (!Objects.equals(managerID.trim(), "manager")) {
-            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Invalid Manager Username.", "Authentication Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Invalid Manager Username.",
+                    "Authentication Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (!Objects.equals(managerPassword.trim(), "manager")) {
-            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Invalid Manager Password.", "Authentication Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(warehouseContext.getMainFrame(), "Invalid Manager Password.",
+                    "Authentication Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
